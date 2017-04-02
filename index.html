@@ -2,8 +2,9 @@
 <html>
 
 <head>
+
 	<meta charset=utf-8>
-	<title>My first three.js app</title>
+	<title>Connection v 1.0.8</title>
 	<style>
 		body {
 			margin: 0;
@@ -16,7 +17,7 @@
 	</style>
 </head>
 
-<body id = "threejs" onmousemove ="show_coords(event)" style='overflow:hidden'>
+<body id = "threejs"  touchend ="touch(event)" onclick="show_coords(event)" onmousemove ="show_coords(event)" style='overflow:hidden' >
 	<script type="x-shader/x-vertex" id="vertexshader">
 
 
@@ -62,6 +63,7 @@
 
 
 	</script>
+
 	<script type="x-shader/x-fragment" id="fragmentshaderforline">
 
 		#ifdef GL_ES
@@ -82,14 +84,18 @@
 
 
 	</script>
+    <script src="js/three.min.js"></script>
+    <script src="bundle.js"></script>
 
-		<script src="js/jquery.js"></script>
-	<script src="js/three.js"></script>
-	<script src="particles.js"></script>
-	<script src="sketch.js"></script>
+    <script>
+
+    </script>
+
+
 	<script>
 		// Our Javascript will go here.
 	</script>
 </body>
+
 
 </html>
