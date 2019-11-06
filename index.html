@@ -1,0 +1,520 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Domino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdn.bootcss.com/p5.js/0.5.9/p5.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <!-- <script src="https://cdn.bootcss.com/p5.js/0.5.9/addons/p5.sound.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/p5.js/0.5.8/addons/p5.dom.min.js"></script>
+    <!-- <link href="/atomicBomb/lib//favicon.ico" rel="shortcut icon"> -->
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        @media screen and (min-width:501px) {
+            #scan {
+                font-family: "Microsoft YaHei", "黑体", "宋体";
+                position: fixed;
+                bottom: 1vw;
+                right: 2vw
+            }
+            #qr {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                width: 10vw;
+                opacity: 0.6
+                /*display: grid;*/
+            }
+            #logo {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                width: 10vw;
+
+
+            }
+            #catalog1 {
+                /*background-image: url(../lib/catalog/catalog-1.png);*/
+            }
+            .item {
+                margin-bott: flex;
+            }
+            a {
+                width: 100px;
+                height: 100%;
+                z-index: 200;
+                top: 0px;
+            }
+            .item {
+                /*width: 100vw;*/
+                /*height:25%;*/
+                /*width:100%;*/
+            }
+            #intro {
+                /*background: url(./lib/intro.png);*/
+                background-color: #ffffff;
+                position: absolute;
+                width: 5vw;
+                height: 5vw;
+                top: 10px;
+                right: 10px;
+                border-radius: 100px;
+            }
+            .content {
+                font-family: "Microsoft YaHei", "黑体", "宋体";
+                position: relative;
+                top: 7%;
+                color: #555555;
+                text-align: center;
+                margin: 80px;
+            }
+            .content p {
+                margin-top: 20px;
+                font-weight: normal;
+            }
+            #domino {
+                font-size: 32px;
+                font-weight: lighter;
+            }
+            .title {
+                letter-spacing: 5px;
+                padding: 0;
+                font-weight: normal;
+            }
+            #introDiv {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+                /*height: 100vw;*/
+                background-color: #eeeeee;
+                display: none;
+            }
+            html, body {
+                overflow: hidden;
+                overflow-y: auto;
+            }
+            .name {
+                font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+                line-height: 0;
+                position: relative;
+                font-weight: bold;
+                text-align: center;
+                top: 80px;
+                left: 67px;
+                font-size: 20px;
+                word-spacing: 8px;
+                letter-spacing: 7px;
+                color: 527283;
+                z-index: 101;
+                /*font-size: :30px;*/
+            }
+            .en {
+                font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+                line-height: 0;
+                position: relative;
+                left: 60vw;
+                top: 36vw;
+                font-size: 15px;
+                word-spacing: 5px;
+                letter-spacing: 5px;
+                color: 527283;
+                z-index: 101;
+                /*font-size: :30px;*/
+            }
+            .img {
+                width: 100vw;
+                position: relative;
+                /*top: 0;*/
+            }
+        }
+
+        @media screen and (max-width:500px) {
+            #qr {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 10vw;
+                display: none;
+            }
+            #logo {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                width: 12vw;
+
+
+            }
+            #catalog1 {
+                /*background-image: url(../lib/catalog/catalog-1.png);*/
+            }
+            .item {
+                margin-bottom: 1px;
+            }
+            a {
+                width: 100px;
+                height: 100%;
+                z-index: 200;
+                top: 0px;
+            }
+            .item {
+                /*width: 100vw;*/
+                /*height:25%;*/
+                /*width:100%;*/
+            }
+            #intro {
+                /*background: url(./lib/intro.png);*/
+                background-color: #ffffff;
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+                border-radius: 40px;
+            }
+            .content {
+                font-family: "Microsoft YaHei", "黑体", "宋体";
+                position: relative;
+                top: 7%;
+                color: #555555;
+                text-align: center;
+                margin: 80px;
+            }
+            .content p {
+                margin-top: 20px;
+                font-weight: normal;
+            }
+            #domino {
+                font-size: 32px;
+                font-weight: lighter;
+            }
+            .title {
+                letter-spacing: 5px;
+                padding: 0;
+                font-weight: normal;
+            }
+            #introDiv {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+                /*height: 100vw;*/
+                background-color: #eeeeee;
+                display: none;
+            }
+            html, body {
+                overflow: hidden;
+                overflow-y: auto;
+            }
+            .name {
+                font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+                line-height: 0;
+                position: relative;
+                font-weight: bold;
+                text-align: center;
+                top: 80px;
+                left: 67px;
+                font-size: 20px;
+                word-spacing: 8px;
+                letter-spacing: 7px;
+                color: 527283;
+                z-index: 101;
+                /*font-size: :30px;*/
+            }
+            .en {
+                font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+                line-height: 0;
+                position: relative;
+                left: 60vw;
+                top: 36vw;
+                font-size: 15px;
+                word-spacing: 5px;
+                letter-spacing: 5px;
+                color: 527283;
+                z-index: 101;
+                /*font-size: :30px;*/
+            }
+            .img {
+                width: 100vw;
+                position: relative;
+                /*top: 0;*/
+            }
+        }
+
+    </style>
+</head>
+
+<body ontouchmove="event.preventDefault()">
+    <a id="intro"></a>
+    <div id="introDiv">
+      <div class="content">
+          <p class="title" id="domino"> Domino</p>
+      </div>
+        <div class="content">
+            <p class="title"> 互动方式</p>
+            <p> 倾斜、推倒手机</p>
+        </div>
+        <div class="content">
+            <p class="title"> 作者</p>
+            <p> @张阳不张扬233</p>
+        </div>
+        <!-- <image id="introImg" src="/washroom/lib/introFau.jpg" /> -->
+    </div>
+    <!-- <img id="qr" src = "/domino/lib/qr.png"/> -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script language="javascript" type="text/javascript" src="/socket.io/socket.io.js"></script> -->
+    <script>var d = [];
+    var num = 0;
+    var sum = 40;
+    var falled = 0;
+    var des;
+    var camPos;
+    var increment = 10;
+    var flag;
+    var rx, ry, rz;
+    var myDiv;
+    var ax, ay, az;
+    var distance = 140;
+    var rotateOfCam;
+    var rotateCamIndex;
+    var distOfRotate;
+    var mr, mg, mb;
+    var qr;
+    var qrSize;
+    var canvas;
+    var scan;
+    var logoA,logo;
+
+    function setup() {
+        canvas = createCanvas(window.innerWidth, window.innerHeight, WEBGL);
+        // qr = createImg('/domino/lib/qr.png', "qr");
+        // logo = createImg('/lib/logo_white.png', "logo");
+        logoA = createA("/")
+        // logoA.child(logo)
+        // logo.id("logo")
+
+        // scan = createDiv("在移动设备上体验互动");
+
+        // scan.id("scan")
+        // qr.id("qr")
+        qrSize = {
+            width: width / 10,
+            height: width / 10
+        }
+        // qr.size(qrSize.width, qrSize.height)
+        // scan.position(width - qrSize.width - window.innerWidth / 50, height - qrSize.width - window.innerWidth / 10)
+        // qr.position(width - qrSize.width - window.innerWidth / 50, height - qrSize.width - window.innerWidth / 50)
+        // colorMode(HSB,255)
+        $("#intro").click(function() {
+            if ($("#introDiv").css("display") == "none") {
+                $("#introDiv").css('display', 'block')
+            } else {
+                $("#introDiv").css('display', 'none')
+            }
+        })
+        $("#introImg").click(function() {
+            if ($("#introDiv").css("display") == "none") {
+                $("#introDiv").css('display', 'block')
+            } else {
+                $("#introDiv").css('display', 'none')
+            }
+        })
+        rotateOfCam = 0;
+        distOfRotate = 0;
+        rotateCamIndex = 0;
+
+        // rr = createDiv('this is some text');
+        // aa = createDiv('this is some text');
+        flag = false;
+        des = createVector(0, 0, 0)
+        camPos = createVector(0, -200, -300)
+        for (var i = 0; i < sum; i++) {
+            d.push(new domino(0, 0, i, num))
+            num += 1;
+        }
+        d[0].falling = false;
+        // d[1].falling = true;
+        // button = createButton('SwitchO On');
+        // button.position(19, height-39);
+        // button.mouseClicked(SwitchOn);
+        // button.mousePressed(SwitchOff);
+        rx = 0
+        ry = 0
+        rz = 0
+        ax = 0
+        ay = 0
+        az = 0
+        // print(myDiv)
+    }
+    // $(window).resize(function() {
+    //   resizeCanvas(window.innerWidth, window.innerHeight);
+    //   // alert(windowHeight)
+    // });
+    function windowResized() {
+        // alert(canvas.width)
+        // alert(windowWidth+" "+windowHeight)
+
+        // qr.position(width - qrSize.width - window.innerWidth / 50, height - qrSize.width - window.innerWidth / 50)
+    }
+
+    function SwitchOn() {
+        flag = !flag
+    }
+
+    // function SwitchOff() {
+    //     flag = false
+    // }
+
+
+    window.ondevicemotion = function(event) {
+        // for (var i = 0; i < particles.length; i++) {
+        //     particles[i].acc.x = event.accelerationIncludingGravity.x;
+        //     particles[i].acc.y = event.accelerationIncludingGravity.y;
+        // }
+        accelerationX = event.accelerationIncludingGravity.x;
+        accelerationY = event.accelerationIncludingGravity.y;
+        accelerationZ = event.accelerationIncludingGravity.z;
+        rX = event.rotationRate.alpha;
+        rY = event.rotationRate.beta;
+        rZ = event.rotationRate.gamma;
+        rx = rX
+        ry = rY
+        rz = rZ
+        ax = accelerationX;
+        ay = accelerationY
+        az = accelerationZ
+    }
+
+    function draw() {
+        $('body').prop('scrollTop', '0');
+        if (canvas.width != window.innerWidth || canvas.height != window.innerHeight) {
+            resizeCanvas(window.innerWidth, window.innerHeight);
+
+            qrSize = {
+                width: width / 10,
+                height: width / 10
+            }
+            // qr.size(qrSize.width, qrSize.height)
+            // qr.position(width - qrSize.width - window.innerWidth / 50, height - qrSize.width - window.innerWidth / 50)
+        }
+        //Control----------------------------------------------------
+        // pointLight(200, 200, 200, 100,400,-100);
+        ambientLight(255);
+        // if (mouseIsPressed === true) {
+        //     flag = true
+        //     d[0].falling = true;
+        // } else {
+        //     flag = false;
+        // }
+        if (flag && increment <= 15) {
+            increment += 0.2;
+        } else if (!flag) {
+            increment = 5
+        }
+        if (ay > -4 && ay < 1) {
+            flag = true
+            d[0].falling = true;
+        } else {
+            flag = false;
+        }
+        rotateOfCam = -Math.atan(-Math.cos(falled * 0.2)) / 3;
+        //------------------------------------------------
+        // aa.html(Math.floor(ax) + " " + Math.floor(ay) + " " + Math.floor(az));
+        background(this.distToCam * 0.2 - 10, 150 * abs(Math.sin(falled * 0.03)) + 50, 255 * abs(Math.cos(falled * 0.03)) + 50);
+        // rotateX(PI );
+        rotateX(PI / 7);
+        distOfRotate = rotateOfCam - rotateCamIndex;
+        rotateCamIndex += distOfRotate * 0.05
+
+        // rotateY(d[falled].camAngle);
+        rotateY(rotateCamIndex);
+        camera(camPos.x, camPos.y - 150, camPos.z);
+        for (var i = 0; i < d.length; i++) {
+
+            d[i].update()
+            if (d[i].id == falled) {
+                if (flag == true) {
+                    d[i].falling = true;
+                }
+            }
+        }
+
+        if (d.length < 40) {
+            d.push(new domino(0, 0, num, num))
+            num += 1;
+        }
+        des.z = -falled * distance
+        des.x = 300 * sin(falled * 0.2);
+        push()
+        translate(0, 0, des.z);
+        // sphere(100);
+        pop()
+        var temp = p5.Vector.sub(des, camPos)
+        if (camPos.dist(des) > 1)
+            camPos.add(temp.mult(0.09));
+        // print(d[0].distToCam)
+        // print(falled + ' ' + d[d.length - 1].id + "flag " + flag)
+
+        mr = Math.floor(255 - (d[0].distToCam / 10))
+        mg = Math.floor(150 * abs(Math.sin(falled * 0.03)) + 40)
+        mb = Math.floor(255 * abs(Math.cos(falled * 0.03)) + 40)
+        document.getElementById("intro").style.backgroundColor = "rgb(" + mr + "," + mg + "," + mb + ")"
+        // print("rgb("+mr+","+mg+","+mb+")")
+    }
+
+    function colorRGB2Hex(r, g, b) {
+
+
+        var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        return hex;
+    }
+
+    function domino(x, y, z, id) {
+
+        this.id = id;
+        this.camAngle = -Math.atan(-Math.cos(falled * 0.2)) / 3;
+        this.angle = 0;
+        this.falling = false;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.isDeleting = false;
+        this.distToCam = Math.sqrt(
+            (this.x - camPos.x) * (this.x - camPos.x) +
+            (this.y - 100 - camPos.y + 150) * (this.y - 100 - camPos.y + 150) +
+            (-this.z * distance - camPos.z) * (-this.z * distance - camPos.z)
+        );
+        this.update = function() {
+            this.camAngle = -Math.atan(-Math.cos(this.id * 0.2)) / 3;
+            ambientMaterial(255 - (this.distToCam / 10 - 10), 150 * abs(Math.sin(falled * 0.03)) + 50, 255 * abs(Math.cos(falled * 0.03)) + 50);
+            this.distToCam = Math.sqrt(
+                (this.x - camPos.x) * (this.x - camPos.x) +
+                (this.y - 100 - camPos.y + 150) * (this.y - 100 - camPos.y + 150) +
+                (-this.z * distance - camPos.z) * (-this.z * distance - camPos.z)
+            );
+            push()
+            translate(this.x, this.y - 100, -this.z * distance)
+            if (this.falling && this.angle < 70) {
+                this.angle += increment;
+            } else if (this.angle >= 30 && (!this.isDeleting)) {
+                falled += 1;
+                setTimeout(function() {
+                    d.shift();
+                }, 1000)
+                this.isDeleting = true;
+            }
+            rotateY(Math.atan(-Math.cos(id * 0.2)) / 2);
+            rotateX(-0.02 * this.angle);
+            translate(300 * Math.sin(id * 0.2), -100, 0)
+            box(100, 200, 10);
+            pop()
+        }
+    }
+    </script>
+</body>
+
+</html>
